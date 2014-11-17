@@ -39,6 +39,7 @@ public class CrapsGame {
     }
     public boolean roll(){
         if (firstroll){
+            feedbackString = "";
             money -= 5;
             int total = dice1.roll()+dice2.roll();
             firstNumber = total;
@@ -49,7 +50,7 @@ public class CrapsGame {
                 lose();
             }
             else{
-                feedbackString = "Game continues...";
+                feedbackString += "\nGame continues...";
                 firstroll = false;
             }
         }
@@ -64,22 +65,24 @@ public class CrapsGame {
                 firstroll = true;
             }
             else{
-                feedbackString = "Game continues...";
+                feedbackString += "\nGame continues...";
             }
         }
         if (money<5){
-            
+            feedbackString = "\nOut of money! Game Over!";
+            buttonText = "New Game";
             return true;
         }
         else{
+            buttonText = "Roll!";
             return false;
         }
     }
     private void win(){
-        feedbackString = "You win!";
+        feedbackString += "\nYou win! New game...";
         money += 10;       
     }
     private void lose(){
-        feedbackString = "You lose.";
+        feedbackString += "\nYou lose. New game...";
     }
 }

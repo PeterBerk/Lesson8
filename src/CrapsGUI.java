@@ -1,7 +1,8 @@
+import javax.swing.ImageIcon;
 public class CrapsGUI extends javax.swing.JFrame {
     private CrapsGame game;
     public CrapsGUI() {
-        
+        game = new CrapsGame();
         initComponents();
     }
 
@@ -9,8 +10,8 @@ public class CrapsGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jlDice1Pic = new javax.swing.JLabel();
+        jlDice2Pic = new javax.swing.JLabel();
         jbRoll = new javax.swing.JButton();
         jlMoney = new javax.swing.JLabel();
         jlDiceTotal = new javax.swing.JLabel();
@@ -19,11 +20,11 @@ public class CrapsGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/d1.JPG"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jlDice1Pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/d1.JPG"))); // NOI18N
+        jlDice1Pic.setText("jLabel1");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/d1.JPG"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jlDice2Pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/d1.JPG"))); // NOI18N
+        jlDice2Pic.setText("jLabel2");
 
         jbRoll.setText("Roll!");
         jbRoll.addActionListener(new java.awt.event.ActionListener() {
@@ -52,9 +53,9 @@ public class CrapsGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlDice1Pic, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jlDice2Pic, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jbRoll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,8 +68,8 @@ public class CrapsGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlDice2Pic)
+                    .addComponent(jlDice1Pic, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlDiceTotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -84,7 +85,11 @@ public class CrapsGUI extends javax.swing.JFrame {
 
     private void jbRollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRollActionPerformed
         if (game.roll()){
+            updateLabels();
             game = new CrapsGame();
+        }
+        else{
+            updateLabels();
         }
     }//GEN-LAST:event_jbRollActionPerformed
 
@@ -123,11 +128,15 @@ public class CrapsGUI extends javax.swing.JFrame {
     private void updateLabels(){
         jlDiceTotal.setText(Integer.toString(game.returnTotalDiceValue()));
         jbRoll.setText(game.returnButton());
+        jtFeedback.setText(game.returnFeedback());
+        jlMoney.setText(game.returnMoney());
+        jlDice1Pic.setIcon(game.getDicePictures(1));
+        jlDice2Pic.setIcon(game.getDicePictures(2));
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jlDice1Pic;
+    private javax.swing.JLabel jlDice2Pic;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbRoll;
     private javax.swing.JLabel jlDiceTotal;
